@@ -308,7 +308,7 @@ tab-group:not([split-view-group]) {
       }
 
       .tab-group-icon {
-        background-color: transparent;
+        background: transparent none;
       }
 
       .tab-group-label {
@@ -324,7 +324,7 @@ tab-group:not([split-view-group]) {
           content: "";
           position: absolute;
           inset: 0;
-          background-color: var(--advanced-tab-color);
+          background: var(--advanced-tab-color);
           visibility: visible;
           grid-area: label;
           width: 100%;
