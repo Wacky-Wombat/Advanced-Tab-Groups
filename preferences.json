@@ -14,34 +14,42 @@
     "conditions": [
       {
         "if": {
-          "property": "browser.tabs.groups.arc-style",
-          "value": false
+          "property": "browser.tabs.groups.style",
+          "value": "none"
+        }
+      },
+      {
+        "if": {
+          "property": "browser.tabs.groups.style",
+          "value": "circle"
         }
       }
-    ]
+    ],
+    "operator": "OR"
   },
   {
     "type": "separator",
-    "label": "Bonus feature"
+    "label": "Style sets",
+    "size": "var(--heading-font-size-medium)"
   },
   {
-    "type": "text",
-    "label": "EITHER …",
-    "margin": "var(--space-medium) 0R var(--space-medium) 22px"
-  },
-  {
-    "property": "browser.tabs.groups.arc-style",
-    "type": "checkbox",
-    "label": "Apply Arc-like group styling"
-  },
-  {
-    "type": "text",
-    "label": "… OR",
-    "margin": "var(--space-large ) 0R var(--space-medium) 22px"
-  },
-  {
-    "property": "browser.tabs.groups.edge-style",
-    "type": "checkbox",
-    "label": "Apply Edge-like group styling"
+    "property": "browser.tabs.groups.style",
+    "label": "Select a predefined style set:",
+    "type": "dropdown",
+    "placeholder": "Default",
+    "options": [
+      {
+        "label": "Simple Circle",
+        "value": "circle"
+      },
+      {
+        "label": "Arc-like",
+        "value": "arc"
+      },
+      {
+        "label": "Edge-like",
+        "value": "edge"
+      }
+    ]
   }
 ]
