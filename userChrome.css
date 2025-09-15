@@ -75,7 +75,7 @@ tab-group:not([split-view-group]) {
     }
 
     .tab-group-label {
-      margin-right: auto !important;
+      margin-inline-end: auto !important;
       width: 100%;
       background: transparent !important;
       color: var(--tab-selected-textcolor) !important;
@@ -89,6 +89,13 @@ tab-group:not([split-view-group]) {
       flex-direction: row;
       align-items: center;
       gap: 5px;
+
+      /* Fix for renaming input */
+      &[id="tab-label-input"] {
+        align-self: center !important;
+        text-align: start !important;
+        margin-inline-start: 4px !important;
+      }
     }
   }
 
@@ -132,6 +139,61 @@ tab-group:not([split-view-group]) {
       tab:not([selected]) {
         max-height: 0 !important;
         opacity: 0 !important;
+        overflow: hidden !important;
+      }
+    }
+  }
+}
+
+
+/* ==== Styles section ==== */
+/* Adds mutually exlusive style sets based on ATG's default styles */
+
+
+/* Circle style */
+@media (-moz-pref("browser.tabs.groups.style", "circle")) {
+
+  tab-group:not([split-view-group]) {
+
+    .tab-close-button {}
+
+    .tab-group-label-container {
+
+      &:hover {
+
+        .tab-close-button {}
+      }
+
+      .tab-group-icon-container {
+
+        .group-marker {
+          /*list-style-image: url(chrome://browser/skin/zen-icons/arrow-right.svg) !important;*/
+
+          &:hover {}
+        }
+      }
+
+      .tab-group-icon {
+        border-radius: 50%;
+      }
+
+      .tab-group-label {}
+    }
+
+    .tab-group-container {
+      margin-inline-start: 17.5px !important;
+
+      &::after {}
+
+      tab {}
+    }
+
+
+    &[collapsed] {
+      .tab-group-label-container {
+        .tab-group-icon {
+          .group-marker {}
+        }
       }
     }
   }
@@ -139,12 +201,10 @@ tab-group:not([split-view-group]) {
 
 
 /* Arc-like group styling */
-@media (-moz-bool-pref: "browser.tabs.groups.arc-style") and (not (-moz-bool-pref: "browser.tabs.groups.edge-style")) {
+@media (-moz-pref("browser.tabs.groups.style", "arc")) {
 
   tab-group:not([split-view-group]) {
     .tab-group-label-container {
-
-      margin-block: var(--space-large) var(--space-small) !important;
 
       &:hover {
         background-color: transparent !important;
@@ -194,7 +254,7 @@ tab-group:not([split-view-group]) {
 
 
 /* Edge-like group styling */
-@media (-moz-bool-pref: "browser.tabs.groups.edge-style") and (not (-moz-bool-pref: "browser.tabs.groups.arc-style")) {
+@media (-moz-pref("browser.tabs.groups.style", "edge")) {
 
   tab-group:not([split-view-group]) {
 
@@ -214,6 +274,10 @@ tab-group:not([split-view-group]) {
 
       &:hover {
         background-color: transparent !important;
+
+        label + image {
+          margin-inline-start: 16px;
+        }
 
         .tab-close-button {}
       }
@@ -271,12 +335,6 @@ tab-group:not([split-view-group]) {
           padding-inline-start: 36px;
         }
       }
-
-      #tab-label-input {
-        align-self: center !important;
-        width: -moz-available;
-        text-align: start;
-      }
     }
 
     .tab-group-container {
@@ -285,7 +343,6 @@ tab-group:not([split-view-group]) {
         left: -8px !important;
         top: 0;
         background: var(--advanced-tab-color);
-        /*height: 100%;*/
         width: 4px;
         border-radius: 2px;
       }
@@ -302,10 +359,6 @@ tab-group:not([split-view-group]) {
             translate: 0 0;
           }
         }
-      }
-
-      .tab-group-container {
-        tab:not([selected]) {}
       }
     }
   }
